@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding:UTF-8 -*-
-import urllib
+
 import urllib2
-import  httplib
-request = urllib2.Request("http://www.baidu.com", data="baidu")
-request.get_method = lambda: 'PUT' # or 'DELETE'
-response = urllib2.urlopen(request)
+httpHandler = urllib2.HTTPHandler(debuglevel=1)
+httpsHandler = urllib2.HTTPSHandler(debuglevel=1)
+opener = urllib2.build_opener(httpHandler,httpHandler)
+urllib2.install_opener(opener)
+response = urllib2.urlopen("http://www.baidu.com")
