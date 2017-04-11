@@ -2,9 +2,13 @@
 # -*- coding:UTF-8 -*-
 
 import urllib2
+import  cookielib
 
-request = urllib2.Request('http://www.xxxxx.com')
-try:
-    urllib2.urlopen(request)
-except urllib2.URLError, e:
-    print e.reason
+cookie = cookielib.CookieJar()
+
+handler = urllib2.HTTPCookieProcessor(cookie)
+opener = urllib2.build_opener(handler)
+response = opener.open('http://www.baidu.com')
+for item in cookie:
+    print 'Name = '+item.name
+    print 'Value = '+item.value
