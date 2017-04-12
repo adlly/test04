@@ -1,15 +1,34 @@
 #!/usr/bin/python
-#-*- coding:UTF-8 -*-
+# -*- coding:UTF-8 -*-
 
-import urllib2
-req = urllib2.Request('http://xx.com')
+__author__ = 'addy'
 
-try :
-    resp = urllib2.urlopen(req)
-    resp = urllib2.urlopen(req)
-except urllib2.URLError as e:
-  if hasattr(e, 'reason'):
-    print(e.reason)
-    print e
-  else:
-    print('error')
+import re
+
+pattern = re.compile(r'hello')
+
+result1 = re.match(pattern,'hello')
+result2 = re.match(pattern,'helloo CQC!')
+result3 = re.match(pattern,'helo CQC!')
+result4 = re.match(pattern,'hello CQC!')
+
+if result1:
+    print result1.group()
+else:
+    print '1 does not match'
+
+if result2:
+    print result2.group()
+else:
+    print '2 dose not match'
+
+
+if result3:
+    print result3.group()
+else:
+    print '3 dose not match'
+
+if result4:
+    print result4.group()
+else:
+    print '4 dose not match'
