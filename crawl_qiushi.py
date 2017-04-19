@@ -12,11 +12,17 @@ headers = {'User-Agent': user_agent}
 try :
     request = urllib2.Request(url, headers= headers)
     response =  urllib2.urlopen(request)
-    content =  response.read().decode('utf-8')
+    content =  response.read()
+    # print content
     # pattern = re.compile('<div.*?author">.*?<a.*?<img.*?>(.*?)</a>.*?<div.*?'+
     #                      'content">(.*?)<!--(.*?)-->.*?</div>(.*?)<div class="stats.*?class="number">(.*?)</i>',re.S)
-    items = bs4.findall(content)
-    print items
+    html = bs4.BeautifulSoup(content, 'html5lib')
+    items = html.findAll('div', attrs={'class':'content-text'})
+    count = 0
+    for i in items:
+        count += 1
+        print i
+    print str(count)
     # for item in items:
     #
     #   print item[0],item[1],item[2],item[3],item[4]
